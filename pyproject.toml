@@ -1,0 +1,66 @@
+[project]
+name = "pythonproject1"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Your Name",email = "you@example.com"}
+]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "pip (>=24.3.1,<25.0.0)",
+    "cachetools (>=5.5.0,<6.0.0)",
+    "certifi (>=2024.12.14,<2025.0.0)",
+    "charset-normalizer (>=3.4.1,<4.0.0)",
+    "click (>=8.1.8,<9.0.0)",
+    "colorama (>=0.4.6,<0.5.0)",
+    "google-api-core (>=2.24.0,<3.0.0)",
+    "google-api-python-client (>=2.157.0,<3.0.0)",
+    "google-auth (>=2.37.0,<3.0.0)",
+    "google-auth-httplib2 (>=0.2.0,<0.3.0)",
+    "googleapis-common-protos (>=1.66.0,<2.0.0)",
+    "httplib2 (>=0.22.0,<0.23.0)",
+    "idna (>=3.10,<4.0)",
+    "isodate (>=0.7.2,<0.8.0)",
+    "mccabe (>=0.7.0,<0.8.0)",
+    "mypy-extensions (>=1.0.0,<2.0.0)",
+    "packaging (>=24.2,<25.0)",
+    "pathspec (>=0.12.1,<0.13.0)",
+    "platformdirs (>=4.3.6,<5.0.0)",
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+requests = "^2.32.3"
+
+
+[tool.poetry.group.lint.dependencies]
+flake8 = "^7.1.1"
+mypy = "^1.14.1"
+black = "^24.10.0"
+isort = "^5.13.2"
+
+[tool.mypy]
+disallow_untyped_defs = true
+warn_return_any = true
+exclude = 'venv'
+
+[tool.black]
+# Максимальная длина строки
+line-length = 119
+# Файлы, которые не нужно форматировать
+exclude = '''
+(
+  /(
+      \.git
+  )/
+)
+'''
+
+[tool.isort]
+# максимальная длина строки
+line_length = 119
