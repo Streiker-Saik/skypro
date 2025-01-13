@@ -1,5 +1,6 @@
 from typing import Union
 
+
 def get_mask_card_number(card_number: Union[int, str]) -> str:
     """Функция переводит целое число в строку и записывает через f строку со срезом: XXXX XX** **** XXXX"""
     card_number_string = str(card_number)
