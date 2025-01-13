@@ -1,7 +1,7 @@
 # from src.masks import get_mask_account, get_mask_card_number
 from src.widget import get_date, mask_account_card
 
-number_list = [
+card_account_list = [
     "Maestro 1596837868705199",
     "Счет 64686473678894779589",
     "MasterCard 7158300734726758",
@@ -11,10 +11,10 @@ number_list = [
     "Visa Gold 5999414228426353",
     "Счет 73654108430135874305",
 ]
-data = "2024-03-11T02:26:18.671407"
+date = "2024-03-11T02:26:18.671407"
 
-print(mask_account_card(number_list[0]))
-print(get_date(data))
+print(mask_account_card(card_account_list[0]))
+print(get_date(date))
 
 # while True:
 #     try:
