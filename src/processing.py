@@ -3,6 +3,6 @@ def filter_by_state(user_id_list: list[dict], state: str = "EXECUTED") -> list[d
     return [user_id for user_id in user_id_list if user_id["state"] == state]
 
 
-def sort_by_date(user_id_list: list[dict], ascending: bool = True) -> list[dict]:
-    """Функция принимает список словарей и сортирует по ключу date(по умолчанию True=по убыванию)"""
-    return sorted(user_id_list, key=lambda user_id: user_id.get("date", 0), reverse=ascending)
+def sort_by_date(user_id_list: list[dict], ascending: bool = False) -> list[dict]:
+    """Функция принимает список словарей и сортирует по ключу date(по умолчанию False - по убыванию)"""
+    return sorted(user_id_list, key=lambda user_id: user_id.get("date", 0), reverse=not ascending)
