@@ -34,6 +34,7 @@ cd ваш-репозиторий
 ```
 poetry add pip 
 poetry add --group lint flack8 black isort mypy
+poetry add --group dev pytest pytest-cov
 ```
 
 ## Примеры работы функций:
