@@ -1,4 +1,5 @@
 from typing import Union
+
 from src.masks import get_mask_account, get_mask_card_number
 
 
@@ -30,7 +31,7 @@ def mask_account_card(card_account: Union[str, int, None]) -> Union[str, TypeErr
                 number_mask = get_mask_card_number(number)
                 # result += get_mask_card_number(number)
 
-    return f"{result} {number_mask}"
+    return f"{result}{number_mask}"
 
 
 def get_date(data: Union[str, int, None]) -> Union[str, TypeError, ValueError]:

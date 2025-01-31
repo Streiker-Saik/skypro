@@ -1,7 +1,8 @@
+from typing import List, Tuple
+
 import pytest
 
 from src.widget import get_date, mask_account_card
-from typing import Tuple, List
 
 
 def test_mask_account_card(input_account_card: Tuple[str, str]) -> None:
@@ -39,8 +40,8 @@ def test_get_date(data: str) -> None:
         get_date(1)
     assert str(exc_info.value) == "Введено не строковое значение"
 
-    with pytest.raises(ValueError) as exc_info:
+    with pytest.raises(ValueError) as exc_value_info:
         get_date("2024-13-11T02:26:18.671407")
-    assert str(exc_info.value) == "Вводные дынные некорректны"
+    assert str(exc_value_info.value) == "Вводные дынные некорректны"
 
     assert get_date(data) == "11.03.2024"

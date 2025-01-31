@@ -13,17 +13,17 @@ python --version
 
 ## Установка Poerty:
 Если у вас еще не установлен Poetry, вы можете установить его, выполнив следующую команду
-```
+```bash
 curl -sSL https://install.python-poetry.org | python3 -
 ```
 Проверить Poetry добавлен в ваш PATH.
-```
+```bash
 poetry --version
 ```
 
 ## Установка:
 1. Клонируйте репозиторий:
-```
+```bash
 git clone git@github.com:Streiker-Saik/skypro.git
 ```
 2. Перейдите в директорию проекта:
@@ -31,7 +31,7 @@ git clone git@github.com:Streiker-Saik/skypro.git
 cd ваш-репозиторий
 ```
 3. Установите необходимые зависимости:
-```
+```bash
 poetry add pip 
 poetry add --group lint flack8 black isort mypy
 poetry add --group dev pytest pytest-cov
@@ -81,4 +81,19 @@ print(sort_by_date(user_id_list))
 {'id': 615064591, 'state': 'CANCELED', 'date': '2018-10-14T08:21:33.419441'}, 
 {'id': 594226727, 'state': 'CANCELED', 'date': '2018-09-12T21:27:25.241689'}, 
 {'id': 939719570, 'state': 'EXECUTED', 'date': '2018-06-30T02:08:58.425572'}]
+```
+
+## Тестирование:
+Этот проект использует pytest для тестирования. Чтобы запустить тесты, выполните следующие шаги:
+1. Запустите тесты с помощью команды:
+```bash
+pytest
+```
+2. Для получения подробного отчета о тестировании запустите:
+```bash
+pytest -v
+```
+3. Запустите mypy для проверки типов:
+```
+mypy ваш_скрипт.py
 ```

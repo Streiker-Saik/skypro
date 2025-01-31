@@ -1,5 +1,6 @@
+from typing import Any, Dict, List, Tuple
+
 from src.processing import filter_by_state, sort_by_date
-from typing import List, Tuple, Dict, Any
 
 
 def test_filter_by_state(input_state: Tuple[List[Dict[str, Any]], str, List[Dict[str, Any]]]) -> None:

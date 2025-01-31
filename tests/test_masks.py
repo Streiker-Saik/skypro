@@ -1,7 +1,9 @@
+from typing import Any, Union
+
 import pytest
 
 from src.masks import get_mask_account, get_mask_card_number
-from typing import Any, Union
+
 
 def test_get_mask_card_number(card_number: Union[int, Any]) -> None:
     """
@@ -19,9 +21,9 @@ def test_get_mask_card_number(card_number: Union[int, Any]) -> None:
         get_mask_card_number("")
     assert str(exc_info.value) == "Введено не числовое значение"
 
-    with pytest.raises(ValueError) as exc_info:
+    with pytest.raises(ValueError) as exc_value_info:
         get_mask_card_number(1)
-    assert str(exc_info.value) == "В номере карты должно быть 16 цифр"
+    assert str(exc_value_info.value) == "В номере карты должно быть 16 цифр"
 
     assert get_mask_card_number(card_number) == "7000 79** **** 6361"
 
@@ -41,8 +43,8 @@ def test_get_mask_account(account_number: str) -> None:
         get_mask_account("")
     assert str(exc_info.value) == "Введено не числовое значение"
 
-    with pytest.raises(ValueError) as exc_info:
+    with pytest.raises(ValueError) as exc_value_info:
         get_mask_account(1)
-    assert str(exc_info.value) == "В номере счета должно быть 20 цифр"
+    assert str(exc_value_info.value) == "В номере счета должно быть 20 цифр"
 
     assert get_mask_account(account_number) == "**4305"

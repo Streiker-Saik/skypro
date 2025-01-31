@@ -1,6 +1,6 @@
-import pytest
+from typing import Any, Dict, List, Tuple, Union
 
-from typing import List, Tuple, Dict, Any, Union
+import pytest
 
 
 @pytest.fixture()
@@ -26,7 +26,8 @@ def account_number() -> int:
     ]
 )
 def input_account_card(request: pytest.FixtureRequest) -> Tuple[str, str]:
-    return request.param
+    param: Tuple[str, str] = request.param
+    return param
 
 
 @pytest.fixture()
@@ -75,7 +76,8 @@ def data() -> str:
     ]
 )
 def input_state(request: pytest.FixtureRequest) -> Tuple[List[Dict[str, Any]], str, List[Dict[str, Any]]]:
-    return request.param
+    param: Tuple[List[Dict[str, Any]], str, List[Dict[str, Any]]] = request.param
+    return param
 
 
 @pytest.fixture(
@@ -124,4 +126,5 @@ def input_state(request: pytest.FixtureRequest) -> Tuple[List[Dict[str, Any]], s
     ]
 )
 def input_date(request: pytest.FixtureRequest) -> Tuple[List[Dict[str, Any]], bool, List[Dict[str, Any]]]:
-    return request.param
+    param: Tuple[List[Dict[str, Any]], bool, List[Dict[str, Any]]] = request.param
+    return param
