@@ -1,9 +1,9 @@
 import pytest
 
 from src.masks import get_mask_account, get_mask_card_number
+from typing import Any, Union
 
-
-def test_get_mask_card_number(card_number):
+def test_get_mask_card_number(card_number: Union[int, Any]) -> None:
     """
     Тестирование правильности маскирования номера карты
     Проверка работы функции на различных входных форматах номеров карт,
@@ -26,7 +26,7 @@ def test_get_mask_card_number(card_number):
     assert get_mask_card_number(card_number) == "7000 79** **** 6361"
 
 
-def test_get_mask_account(account_number):
+def test_get_mask_account(account_number: str) -> None:
     """
     Тестирование правильности маскирования номера счета.
     Проверка работы функции с различными форматами и длинами номеров счетов.

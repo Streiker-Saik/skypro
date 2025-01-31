@@ -1,7 +1,8 @@
+from typing import Union
 from src.masks import get_mask_account, get_mask_card_number
 
 
-def mask_account_card(card_account: str) -> str:
+def mask_account_card(card_account: Union[str, int, None]) -> Union[str, TypeError]:
     """Функция принимает "название карты" "номер" или "счет" и выводит через f строку название и маску"""
 
     result = ""
@@ -22,15 +23,17 @@ def mask_account_card(card_account: str) -> str:
         elif word.isdigit():
             if result == "Счет ":
                 number = int(word)
-                result += get_mask_account(number)
+                number_mask = get_mask_account(number)
+                # result += get_mask_account(number)
             else:
                 number = int(word)
-                result += get_mask_card_number(number)
+                number_mask = get_mask_card_number(number)
+                # result += get_mask_card_number(number)
 
-    return result
+    return f"{result} {number_mask}"
 
 
-def get_date(data: str) -> str:
+def get_date(data: Union[str, int, None]) -> Union[str, TypeError, ValueError]:
     """Функция принимает дату и время в формате ГГГГ-ММ-ДД... и выводит дату в формате ДД.ММ.ГГГГ"""
 
     if data is None:

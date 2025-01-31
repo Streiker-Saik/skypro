@@ -1,9 +1,10 @@
 import pytest
 
 from src.widget import get_date, mask_account_card
+from typing import Tuple, List
 
 
-def test_mask_account_card(input_account_card):
+def test_mask_account_card(input_account_card: Tuple[str, str]) -> None:
     account_card, conclusion = input_account_card
     """
     Функция проверяет, правильно ли функция mask_account_card обрабатывает различные
@@ -23,7 +24,7 @@ def test_mask_account_card(input_account_card):
     assert mask_account_card(account_card) == conclusion
 
 
-def test_get_date(data):
+def test_get_date(data: str) -> None:
     """
     Функция проверяет, правильно ли функция get_date обрабатывает даты.
     Проверка работы функции на различных входных форматах даты, включая граничные случаи

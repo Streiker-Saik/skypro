@@ -1,4 +1,7 @@
-def get_mask_card_number(card_number: int) -> str:
+from typing import Union
+
+
+def get_mask_card_number(card_number: Union[int, str, None]) -> Union[str, TypeError, ValueError]:
     """Функция переводит целое число в строку и записывает через f строку со срезом: XXXX XX** **** XXXX"""
 
     if card_number is None:
@@ -15,7 +18,7 @@ def get_mask_card_number(card_number: int) -> str:
     return f"{card_number_string[-16:-12]} {card_number_string[-12:-10]}** **** {card_number_string[-4:]}"
 
 
-def get_mask_account(account_number: int) -> str:
+def get_mask_account(account_number: Union[int, str, None]) -> Union[str, TypeError, ValueError]:
     """Функция переводит целое число в строку и записывает через f строку со срезом: **XXXX"""
 
     if account_number is None:
