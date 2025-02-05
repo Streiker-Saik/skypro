@@ -1,7 +1,15 @@
-# Функция должна возвращать итератор, который поочередно выдает транзакции,
-# где валюта операции соответствует заданной (например, USD)
-def filter_by_currency():
-    pass
+from typing import List, Dict, Iterator
+
+
+def filter_by_currency(transactions: List[Dict], currency: str) -> Iterator[Dict]:
+    """
+    Функция получает список словарей транзакций и наименование валюты,
+    возвращает итератор транзакций отфильтрованный по наименованию валюты
+    """
+    return filter(
+        lambda code_currency: code_currency.get("operationAmount", 0).get("currency", 0).get("code", 0) == currency,
+        transactions,
+    )
 
 
 # Генератор принимает список словарей с транзакциями и возвращает описание каждой операции по очереди
