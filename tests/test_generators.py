@@ -25,10 +25,23 @@ def test_filter_by_currency_not_transactions() -> None:
     assert result == []
 
 
-# Проверьте, что функция возвращает корректные описания для каждой транзакции.
-# Тестируйте работу функции с различным количеством входных транзакций, включая пустой список.
-def test_transaction_descriptions():
-    pass
+def test_transaction_descriptions(transactions: List[Dict]) -> None:
+    """Тестирование, что функция возвращает корректные описания для каждой транзакции."""
+    result = list(transaction_descriptions(transactions))
+    assert result == [
+        "Перевод организации",
+        "Перевод со счета на счет",
+        "Перевод со счета на счет",
+        "Перевод с карты на карту",
+        "Перевод организации",
+    ]
+
+
+def test_transaction_descriptions_not_transactions() -> None:
+    """Генератор не завершается ошибкой при обработке пустого списка или
+    списка без соответствующих валютных операций"""
+    result = list(transaction_descriptions([]))
+    assert result == []
 
 
 @pytest.mark.parametrize(

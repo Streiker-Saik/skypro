@@ -10,9 +10,10 @@ def filter_by_currency(transactions: List[Dict], currency: str) -> Iterator[Dict
     )
 
 
-# Генератор принимает список словарей с транзакциями и возвращает описание каждой операции по очереди
-def transaction_descriptions():
-    pass
+def transaction_descriptions(transactions: List[Dict]) -> Iterator[str]:
+    """Генератор принимает список словарей с транзакциями и возвращает описание каждой операции по очереди"""
+    for transaction in transactions:
+        yield transaction.get("description", 0)
 
 
 def card_number_generator(start: int = 1, stop: int = 9999999999999999) -> Union[List[str], TypeError, ValueError]:
