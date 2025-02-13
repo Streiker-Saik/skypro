@@ -15,21 +15,17 @@ def log(filename: Optional[str] = None, directory: str = "data") -> Callable:
                 message = f"{func.__name__} ok."
                 return result
 
-            except TypeError as error_message:
-                message = f"{func.__name__} error: TypeError: {error_message}. Inputs: {args}, {kwargs}."
-
-            except ValueError as error_message:
-                message = f"{func.__name__} error: ValueError: {error_message}. Inputs: {args}, {kwargs}."
-
-            # другие не учтенные ошибки
-            # except Exception as error_message:
-            #     message = f"{func.__name__} error: Exception: {error_message}. Inputs: {args}, {kwargs}."
+            except Exception as error_message:
+                message = (
+                    f"{func.__name__} error: {error_message.__class__.__name__}: "
+                    f"{error_message}. Inputs: {args}, {kwargs}."
+                )
 
             finally:
                 if not filename:
                     print(message)
                 else:
-                    os.chdir("..")
+                    os.chdir("..")  # в данных расположениях выходит в директорию выше, далее скорректировать
                     # проверка на существовании директории, при отсутствии, создается.
                     if not os.path.exists(directory):
                         os.makedirs(directory)
@@ -37,7 +33,7 @@ def log(filename: Optional[str] = None, directory: str = "data") -> Callable:
                     with open(os.path.join(directory, filename), "a", encoding="utf-8") as file:
                         file.write(f"{message}\n")
 
-            return None
+            return func(*args, **kwargs)
 
         return wrapper
 

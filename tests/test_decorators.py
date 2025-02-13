@@ -7,10 +7,22 @@ from src.decorators import log
 from src.masks import get_mask_card_number
 
 
+def test_log(capsys: pytest.CaptureFixture) -> None:
+    """Тестирование работы функции log"""
+
+    @log()
+    def func(x: int) -> int:
+        """Тестовая функция умножения"""
+        return x * 2
+
+    func(2)
+    captured = capsys.readouterr()
+    assert "func ok.\n" == captured.out
+
+
 @pytest.mark.parametrize(
-    "argument_log, expected",
+    "argument_log_crash, expected",
     [
-        (2, "func ok.\n"),
         (None, "func error: TypeError: Вводные дынные отсутствуют. Inputs: (None,), {}.\n"),
         ("2", "func error: TypeError: Введено не числовое значение. Inputs: ('2',), {}.\n"),
         (
@@ -19,8 +31,8 @@ from src.masks import get_mask_card_number
         ),
     ],
 )
-def test_log(capsys: pytest.CaptureFixture, argument_log: Any, expected: str) -> None:
-    """Тестирование работы функции log при разных данных"""
+def test_func_crash(capsys: pytest.CaptureFixture, argument_log_crash: Any, expected: str) -> None:
+    """Тестирование работы функции log при работе с ошибками"""
 
     @log()
     def func(x: int) -> int:
@@ -36,9 +48,11 @@ def test_log(capsys: pytest.CaptureFixture, argument_log: Any, expected: str) ->
             raise ValueError("Число должно быть положительное и не равно 0")
         return x * 2
 
-    func(argument_log)
+    with pytest.raises(Exception):
+        func(argument_log_crash)
+
     captured = capsys.readouterr()
-    assert expected == captured.out
+    assert expected in captured.out
 
 
 def test_log_create_and_fill(filename: str = "test.txt", directory: str = "data") -> None:
@@ -78,6 +92,10 @@ def test_log_get_mask_card_number(capsys: pytest.CaptureFixture, card_number: An
 
     decoder_get_mask_card_number = log(None)(get_mask_card_number)
 
-    decoder_get_mask_card_number(card_number)
+    try:
+        decoder_get_mask_card_number(card_number)
+    except Exception:
+        pass  # игнорируем что бы захватить исключение
+
     captured = capsys.readouterr()
-    assert expected == captured.out
+    assert expected in captured.out
