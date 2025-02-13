@@ -4,7 +4,7 @@ from typing import Any, Callable, Optional
 
 
 def log(filename: Optional[str] = None, directory: str = "data") -> Callable:
-    """"""
+    """Декоратор выводящий логи выполнение функций, в файл(по умолчанию на консоль) в директорию (по умолчанию data)"""
 
     def decorator(func: Callable) -> Callable:
         @wraps(func)
