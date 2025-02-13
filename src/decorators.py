@@ -9,9 +9,11 @@ def log(filename: Optional[str] = None, directory: str = "data") -> Callable:
     def decorator(func: Callable) -> Callable:
         @wraps(func)
         def wrapper(*args: Any, **kwargs: Any) -> Any:
+            message = ""
             try:
-                func(*args, **kwargs)
+                result = func(*args, **kwargs)
                 message = f"{func.__name__} ok."
+                return result
 
             except TypeError as error_message:
                 message = f"{func.__name__} error: TypeError: {error_message}. Inputs: {args}, {kwargs}."
@@ -23,18 +25,19 @@ def log(filename: Optional[str] = None, directory: str = "data") -> Callable:
             # except Exception as error_message:
             #     message = f"{func.__name__} error: Exception: {error_message}. Inputs: {args}, {kwargs}."
 
-            if not filename:
-                print(message)
-            else:
-                os.chdir("..")
-                # проверка на существовании директории, при отсутствии, создается.
-                if not os.path.exists(directory):
-                    os.makedirs(directory)
+            finally:
+                if not filename:
+                    print(message)
+                else:
+                    os.chdir("..")
+                    # проверка на существовании директории, при отсутствии, создается.
+                    if not os.path.exists(directory):
+                        os.makedirs(directory)
 
-                with open(os.path.join(directory, filename), "a", encoding="utf-8") as file:
-                    file.write(f"{message}\n")
+                    with open(os.path.join(directory, filename), "a", encoding="utf-8") as file:
+                        file.write(f"{message}\n")
 
-            # return result
+            return None
 
         return wrapper
 
