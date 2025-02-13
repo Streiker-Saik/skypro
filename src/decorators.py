@@ -1,11 +1,11 @@
 import os
-
 from functools import wraps
 from typing import Any, Callable, Optional
 
 
-def log(filename: Optional[str] = None, directory: str ="data") -> Callable:
+def log(filename: Optional[str] = None, directory: str = "data") -> Callable:
     """"""
+
     def decorator(func: Callable) -> Callable:
         @wraps(func)
         def wrapper(*args: Any, **kwargs: Any) -> Any:

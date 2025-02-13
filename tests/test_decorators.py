@@ -1,7 +1,7 @@
+import os
 from typing import Any
 
 import pytest
-import os
 
 from src.decorators import log
 from src.masks import get_mask_card_number
@@ -19,7 +19,7 @@ from src.masks import get_mask_card_number
         ),
     ],
 )
-def test_log(capsys: pytest.CaptureFixture, argument_log, expected) -> None:
+def test_log(capsys: pytest.CaptureFixture, argument_log: Any, expected: str) -> None:
     """Тестирование работы функции log при разных данных"""
 
     @log()
@@ -41,8 +41,9 @@ def test_log(capsys: pytest.CaptureFixture, argument_log, expected) -> None:
     assert expected == captured.out
 
 
-def test_log_create_and_fill(filename: str ="test.txt", directory: str ="data") -> None:
+def test_log_create_and_fill(filename: str = "test.txt", directory: str = "data") -> None:
     """Тестирование функции на создание и заполнение файла в директории"""
+
     @log(filename)
     def func(x: int) -> int:
         """Тестовая функция умножения"""
@@ -54,9 +55,9 @@ def test_log_create_and_fill(filename: str ="test.txt", directory: str ="data") 
     os.chdir(directory)
     with open(filename, "r", encoding="utf-8") as file:
         assert file.readline() == "func ok.\n"
-    os.remove(filename) # удаляем тестовый файл
-    os.chdir("..") # переходим в исходную директорию
-    os.rmdir(directory) # удаляем пустую директорию
+    os.remove(filename)  # удаляем тестовый файл
+    os.chdir("..")  # переходим в исходную директорию
+    os.rmdir(directory)  # удаляем пустую директорию
 
 
 @pytest.mark.parametrize(
