@@ -20,6 +20,7 @@ def log(filename: Optional[str] = None, directory: str = "data") -> Callable:
                     f"{func.__name__} error: {error_message.__class__.__name__}: "
                     f"{error_message}. Inputs: {args}, {kwargs}."
                 )
+                raise error_message
 
             finally:
                 if not filename:
@@ -32,8 +33,6 @@ def log(filename: Optional[str] = None, directory: str = "data") -> Callable:
 
                     with open(os.path.join(directory, filename), "a", encoding="utf-8") as file:
                         file.write(f"{message}\n")
-
-            return func(*args, **kwargs)
 
         return wrapper
 

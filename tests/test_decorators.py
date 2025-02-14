@@ -74,12 +74,20 @@ def test_log_create_and_fill(filename: str = "test.txt", directory: str = "data"
     os.rmdir(directory)  # удаляем пустую директорию
 
 
+def test_log_get_mask_card_number(capsys: pytest.CaptureFixture, card_number: Any) -> None:
+    """Тестирование работы декоратора 'log', на разные данные функции 'get_mask_card_number'"""
+
+    decoder_get_mask_card_number = log(None)(get_mask_card_number)
+    decoder_get_mask_card_number(card_number)
+    captured = capsys.readouterr()
+    assert "get_mask_card_number ok.\n" in captured.out
+
+
 @pytest.mark.parametrize(
     "card_number, expected",
     [
-        (7000792289606361, "get_mask_card_number ok.\n"),
         (None, "get_mask_card_number error: TypeError: Вводные дынные отсутствуют. Inputs: (None,), {}.\n"),
-        ("", "get_mask_card_number error: TypeError: Введено не числовое значение. Inputs: ('',), {}.\n"),
+        ([], "get_mask_card_number error: TypeError: Введен не корректный тип данных. Inputs: ([],), {}.\n"),
         (
             70007922896063611,
             "get_mask_card_number error: ValueError: В номере карты должно быть 16 цифр. "
@@ -87,15 +95,11 @@ def test_log_create_and_fill(filename: str = "test.txt", directory: str = "data"
         ),
     ],
 )
-def test_log_get_mask_card_number(capsys: pytest.CaptureFixture, card_number: Any, expected: str) -> None:
+def test_log_get_mask_card_number_crash(capsys: pytest.CaptureFixture, card_number: Any, expected: str) -> None:
     """Тестирование работы декоратора 'log', на разные данные функции 'get_mask_card_number'"""
 
     decoder_get_mask_card_number = log(None)(get_mask_card_number)
-
-    try:
+    with pytest.raises(Exception):
         decoder_get_mask_card_number(card_number)
-    except Exception:
-        pass  # игнорируем что бы захватить исключение
-
     captured = capsys.readouterr()
     assert expected in captured.out

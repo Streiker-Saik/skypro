@@ -3,7 +3,7 @@ from typing import Union
 from src.masks import get_mask_account, get_mask_card_number
 
 
-def mask_account_card(card_account: Union[str, int, None]) -> Union[str, TypeError]:
+def mask_account_card(card_account: Union[str, int, None]) -> str:
     """Функция принимает "название карты" "номер" или "счет" и выводит через f строку название и маску"""
 
     result = ""
@@ -34,7 +34,7 @@ def mask_account_card(card_account: Union[str, int, None]) -> Union[str, TypeErr
     return f"{result}{number_mask}"
 
 
-def get_date(data: Union[str, int, None]) -> Union[str, TypeError, ValueError]:
+def get_date(data: Union[str, int, None]) -> str:
     """Функция принимает дату и время в формате ГГГГ-ММ-ДД... и выводит дату в формате ДД.ММ.ГГГГ"""
 
     if data is None:
