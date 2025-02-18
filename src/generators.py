@@ -1,4 +1,4 @@
-from typing import Dict, Iterator, List, Union
+from typing import Dict, Iterator, List
 
 
 def filter_by_currency(transactions: List[Dict], currency: str) -> Iterator[Dict]:
@@ -16,7 +16,7 @@ def transaction_descriptions(transactions: List[Dict]) -> Iterator[str]:
         yield transaction.get("description", 0)
 
 
-def card_number_generator(start: int = 1, stop: int = 9999999999999999) -> Union[List[str], TypeError, ValueError]:
+def card_number_generator(start: int = 1, stop: int = 9999999999999999) -> List[str]:
     """Функция принимает целое число начало диапазона и конца,
     выдает список номеров банковских карт в формате XXXX XXXX XXXX XXXX.
     Неуказанный диапазон от 1 до 9999999999999999(16 цифр)"""
