@@ -32,8 +32,8 @@ cd ваш-репозиторий
 ```
 3. Установите необходимые зависимости:
 ```bash
-poetry add pip 
-poetry add --group lint flack8 black isort mypy
+poetry add pip python-dotenv requests
+poetry add --group lint flack8 black isort mypy types-requests
 poetry add --group dev pytest pytest-cov
 ```
 
@@ -217,6 +217,28 @@ for _ in range(2):
     ]
 ```
 
+Модуль src.decorators.py
+```
+def func(x: int) -> int:
+    return x * 2
+    
+@log()
+func(2)
+>>> func ok.
+```
+
+Модуль src.utils.py
+```
+print(get_transactions_from_json("operations.json"))
+>>> [operations]
+```
+
+Модуль src.external_api.py
+```
+transactions = get_transactions_from_json("operations.json")
+print(transaction_amount_in_rub(transactions))
+>>> round(float(sum_amount_in_rub, 2))
+```
 ## Тестирование:
 Этот проект использует pytest для тестирования. Чтобы запустить тесты, выполните следующие шаги:
 1. Запустите тесты с помощью команды:
