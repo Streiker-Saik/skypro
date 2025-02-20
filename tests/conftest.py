@@ -243,3 +243,12 @@ def transactions() -> List[Dict]:
 def input_by_currency(request: pytest.FixtureRequest) -> Tuple[str, Dict]:
     param: Tuple[str, Dict] = request.param
     return param
+
+
+@pytest.fixture()
+def transactions_from_to() -> List[Dict[str, Any]]:
+    return [
+        {"operationAmount": {"amount": "31957.58", "currency": {"name": "руб.", "code": "RUB"}}},
+        {"operationAmount": {"amount": "8221.37", "currency": {"name": "USD", "code": "USD"}}},
+        {"operationAmount": {"amount": "9824.07", "currency": {"name": "USD", "code": "USD"}}},
+    ]

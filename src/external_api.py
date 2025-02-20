@@ -5,13 +5,12 @@ from typing import Any, Dict, List
 import requests
 from dotenv import load_dotenv
 
-# from src.utils import get_transactions_from_json
 
-
-def transaction_amount_in_rub(transactions: List[Dict[str, Any]], code: str = "RUB") -> float:
+def transaction_amount_in_rub(transactions: List[Dict[str, Any]]) -> float:
     """Функция, принимает транзакции, выводит сумму транзакций в рублях"""
+    code = "RUB"
     transactions_amount = []
-    transactions_currency = {}
+    transactions_currency_amount = {}
 
     for transaction in transactions:
         # {
@@ -32,12 +31,12 @@ def transaction_amount_in_rub(transactions: List[Dict[str, Any]], code: str = "R
         code_currency = transaction["operationAmount"]["currency"]["code"]
         amount = float(transaction["operationAmount"]["amount"])
 
-        if code_currency not in transactions_currency:
-            transactions_currency[f"{code_currency}"] = amount
+        if code_currency not in transactions_currency_amount:
+            transactions_currency_amount[code_currency] = amount
         else:
-            transactions_currency[f"{code_currency}"] += amount
+            transactions_currency_amount[code_currency] += amount
 
-    for key, values in transactions_currency.items():
+    for key, values in transactions_currency_amount.items():
         if key == code:
             transactions_amount.append(round(values, 2))
         else:
@@ -62,10 +61,20 @@ def get_apilayer_convert_rates(*, code_to: str, code_from: str, amount: str) -> 
         result = response.text
         output_data = json.loads(result)
         return round(float(output_data["result"]), 2)
-    except:
-        raise Exception(f"Что-то пошло не так. Ошибка {status_code}")
+        # return result.json()["result"]
+
+    except requests.exceptions.ConnectionError:
+        raise print("Connection Error. Please check your network connection")
+
+    except Exception:
+        raise print(f"Что-то пошло не так. Ошибка {status_code}")
 
 
-# if __name__ == "__main__":
-#     transactions = get_transactions_from_json("operations.json")
-#     print(transaction_amount_in_rub(transactions))
+from src.utils import get_transactions_from_json
+if __name__ == "__main__":
+    # transactions = get_transactions_from_json("operations.json")
+    # print(type(transactions))
+    # result =transaction_amount_in_rub(transactions)
+    # print(type(result))
+    # print(result)
+    print(get_apilayer_convert_rates(code_to="RUB", code_from="USD", amount=1))
