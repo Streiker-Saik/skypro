@@ -1,11 +1,9 @@
-import json
-import os
-from typing import Any, Dict, List, Optional
 import datetime
+import os
+from typing import Any, Dict, Optional
 
 import requests
 from dotenv import load_dotenv
-
 
 # def transaction_total_amount_in_rub(transactions: List[Dict[str, Any]]) -> float:
 #     """Функция, принимает транзакции, выводит сумму транзакций в рублях. С конвертацией на сегодняшний день"""
