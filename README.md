@@ -32,8 +32,8 @@ cd ваш-репозиторий
 ```
 3. Установите необходимые зависимости:
 ```bash
-poetry add pip 
-poetry add --group lint flack8 black isort mypy
+poetry add pip python-dotenv requests
+poetry add --group lint flack8 black isort mypy types-requests
 poetry add --group dev pytest pytest-cov
 ```
 
@@ -217,6 +217,70 @@ for _ in range(2):
     ]
 ```
 
+Модуль src.decorators.py
+```
+def func(x: int) -> int:
+    return x * 2
+    
+@log()
+func(2)
+>>> func ok.
+```
+
+Модуль src.utils.py
+```
+print(get_transactions_from_json("operations.json"))
+>>> [operations]
+```
+
+Модуль src.external_api.py
+```
+transactions = get_transactions_from_json("operations.json")
+transactions = [
+  {
+    "id": 441945886,
+    "state": "EXECUTED",
+    "date": "2019-08-26T10:50:58.294041",
+    "operationAmount": {
+      "amount": "31957.58",
+      "currency": {
+        "name": "руб.",
+        "code": "RUB"
+      }
+    },
+    "description": "Перевод организации",
+    "from": "Maestro 1596837868705199",
+    "to": "Счет 64686473678894779589"
+  },
+  {
+    "id": 41428829,
+    "state": "EXECUTED",
+    "date": "2019-07-03T18:35:29.512364",
+    "operationAmount": {
+      "amount": "8221.37",
+      "currency": {
+        "name": "USD",
+        "code": "USD"
+      }
+    },
+    "description": "Перевод организации",
+    "from": "MasterCard 7158300734726758",
+    "to": "Счет 35383033474447895560"
+  },
+  ... 
+]
+count = 0
+for transaction in transactions:
+    count += 1
+    print(transaction_amount_in_rub(transaction))
+    if count == 2:
+        break
+>>> 31957.58
+>>> 520543.42
+
+# print(transaction_toral_amount_in_rub(transactions))
+# >>> round(float(sum_amount_in_rub, 2))
+```
 ## Тестирование:
 Этот проект использует pytest для тестирования. Чтобы запустить тесты, выполните следующие шаги:
 1. Запустите тесты с помощью команды:
