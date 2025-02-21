@@ -1,28 +1,17 @@
-from src.processing import filter_by_state, sort_by_date
-from src.widget import get_date, mask_account_card
+# import logging
 
-card_account_list = [
-    "Maestro 1596837868705199",
-    "Счет 64686473678894779589",
-    "MasterCard 7158300734726758",
-    "Счет 35383033474447895560",
-    "Visa Classic 6831982476737658",
-    "Visa Platinum 8990922113665229",
-    "Visa Gold 5999414228426353",
-    "Счет 73654108430135874305",
-]
-date = "2024-03-11T02:26:18.671407"
-
-user_id_list = [
-    {"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"},
-    {"id": 939719570, "state": "EXECUTED", "date": "2018-06-30T02:08:58.425572"},
-    {"id": 594226727, "state": "CANCELED", "date": "2018-09-12T21:27:25.241689"},
-    {"id": 615064591, "state": "CANCELED", "date": "2018-10-14T08:21:33.419441"},
-]
-
-print(mask_account_card(card_account_list[0]))
-print(get_date(date))
-
-print(filter_by_state(user_id_list))
-print(filter_by_state(user_id_list, "CANCELED"))
-print(sort_by_date(user_id_list))
+# from src.utils import get_transactions_from_json
+# from src.masks import get_mask_account, get_mask_card_number
+#
+# get_mask_account(12345678901234567890)
+# get_mask_card_number(1234567890123456)
+# get_transactions_from_json("data/operations.json")
+#
+# logging.basicConfig(level=logging.DEBUG,
+#                     format='%(asctime)s - %(name)s - %(levelname)s: %(message)s',
+#                     filename=f'logs/application.log',
+#                     filemode='w')
+#
+# mask_logger = logging.getLogger("add.mask")
+# utils_logger = logging.getLogger("add.utils")
+# main_logger = logging.getLogger("add.main")
