@@ -26,7 +26,7 @@ def test_read_csv_transactions(read_csv: MagicMock) -> None:
     ]
     assert read_csv_transactions("test.csv") == expected
     file_path = "test.csv"
-    delimiter = ';'
+    delimiter = ";"
     read_csv.assert_called_once_with(file_path, delimiter=delimiter)
 
 
