@@ -32,8 +32,8 @@ cd ваш-репозиторий
 ```
 3. Установите необходимые зависимости:
 ```bash
-poetry add pip python-dotenv requests pandas openpyxl pandas-stubs
-poetry add --group lint flake8 black isort mypy types-requests
+poetry add pip python-dotenv requests pandas openpyxl 
+poetry add --group lint flake8 black isort mypy types-requests pandas-stubs
 poetry add --group dev pytest pytest-cov
 ```
 
