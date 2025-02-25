@@ -1,9 +1,9 @@
-2025-02-21 20:57:34,386 - utils - ERROR: Файл "non.json" - не найден
-2025-02-21 20:57:34,387 - utils - INFO: Выполняем преобразование JSON-файла "../data/test.json" в объект Python
-2025-02-21 20:57:34,394 - utils - INFO: Преобразование JSON-файла "../data/test.json" в объект Python выполнено
-2025-02-21 20:57:34,395 - utils - INFO: Выполняем преобразование JSON-файла "../data/test.json" в объект Python
-2025-02-21 20:57:34,395 - utils - INFO: Преобразование JSON-файла "../data/test.json" в объект Python выполнено
-2025-02-21 20:57:34,397 - utils - INFO: Выполняем преобразование JSON-файла "../data/test.json" в объект Python
-2025-02-21 20:57:34,402 - utils - ERROR: Невозможно преобразовать json дынные: Expecting value: line 1 column 1 (char 0)
-2025-02-21 20:57:34,404 - utils - INFO: Выполняем преобразование JSON-файла "../data/test.json" в объект Python
-2025-02-21 20:57:34,404 - utils - ERROR: Файл содержит не список
+2025-02-25 17:11:57,423 - utils - ERROR: Файл "non.json" - не найден
+2025-02-25 17:11:57,426 - utils - INFO: Выполняем преобразование JSON-файла "../data/test.json" в объект Python
+2025-02-25 17:11:57,428 - utils - INFO: Преобразование JSON-файла "../data/test.json" в объект Python выполнено
+2025-02-25 17:11:57,430 - utils - INFO: Выполняем преобразование JSON-файла "../data/test.json" в объект Python
+2025-02-25 17:11:57,430 - utils - INFO: Преобразование JSON-файла "../data/test.json" в объект Python выполнено
+2025-02-25 17:11:57,432 - utils - INFO: Выполняем преобразование JSON-файла "../data/test.json" в объект Python
+2025-02-25 17:11:57,433 - utils - ERROR: Невозможно преобразовать json дынные: Expecting value: line 1 column 1 (char 0)
+2025-02-25 17:11:57,434 - utils - INFO: Выполняем преобразование JSON-файла "../data/test.json" в объект Python
+2025-02-25 17:11:57,435 - utils - ERROR: Файл содержит не список

@@ -35,5 +35,6 @@ def get_transactions_from_json(file_path: str) -> List[Dict[str, Any]]:
         utils_logger.error(f"Невозможно преобразовать json дынные: {exc_info}")
         return []
 
+
 # if __name__ == "__main__":
 #     print(get_transactions_from_json("../data/operations.json"))

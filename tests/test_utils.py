@@ -19,6 +19,8 @@ def transactions_from_to() -> List[Dict[str, Any]]:
         {"operationAmount": {"amount": "8221.37", "currency": {"name": "USD", "code": "USD"}}},
         {"operationAmount": {"amount": "9824.07", "currency": {"name": "USD", "code": "USD"}}},
     ]
+
+
 def test_get_transactions_from_json(transactions_from_to: List[Dict[str, Any]]) -> None:
     """Тест работы функции"""
     file_path = "../data/test.json"
