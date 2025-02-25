@@ -25,6 +25,9 @@ def test_read_csv_transactions(read_csv: MagicMock) -> None:
         {"id": 3598919.0, "state": "EXECUTED", "date": "2020-12-06T23:00:58Z"},
     ]
     assert read_csv_transactions("test.csv") == expected
+    file_path = "test.csv"
+    delimiter = ';'
+    read_csv.assert_called_once_with(file_path, delimiter=delimiter)
 
 
 def test_read_csv_transactions_file_none_found() -> None:
@@ -56,6 +59,8 @@ def test_read_excel_transactions(read_excel: MagicMock) -> None:
         {"id": 3598919.0, "state": "EXECUTED", "date": "2020-12-06T23:00:58Z"},
     ]
     assert read_excel_transactions("test.xlsx") == expected
+    file_path = "test.xlsx"
+    read_excel.assert_called_once_with(file_path)
 
 
 def test_read_excel_transactions_file_none_found() -> None:
