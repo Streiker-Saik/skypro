@@ -4,8 +4,8 @@ import os
 from typing import Any, Dict, List
 
 # создание абсолютного пути из относительного
-project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-log_file = os.path.join(project_root, 'logs', 'utils.log')
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+log_file = os.path.join(project_root, "logs", "utils.log")
 
 utils_logger = logging.getLogger("utils")
 file_handler = logging.FileHandler(log_file, mode="w", encoding="utf-8")
