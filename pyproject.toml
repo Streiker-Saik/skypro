@@ -11,6 +11,8 @@ dependencies = [
     "pip (>=24.3.1,<25.0.0)",
     "requests (>=2.32.3,<3.0.0)",
     "python-dotenv (>=1.0.1,<2.0.0)",
+    "pandas (>=2.2.3,<3.0.0)",
+    "openpyxl (>=3.1.5,<4.0.0)",
 ]
 
 [build-system]
@@ -23,12 +25,13 @@ flake8 = "^7.1.1"
 mypy = "^1.14.1"
 black = "^24.10.0"
 isort = "^5.13.2"
+pandas-stubs = "^2.2.3.241126"
+types-requests = "^2.32.0.20241016"
 
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.4"
 pytest-cov = "^6.0.0"
-types-requests = "^2.32.0.20241016"
 
 [tool.mypy]
 disallow_untyped_defs = true

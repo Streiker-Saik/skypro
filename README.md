@@ -32,8 +32,8 @@ cd ваш-репозиторий
 ```
 3. Установите необходимые зависимости:
 ```bash
-poetry add pip python-dotenv requests
-poetry add --group lint flack8 black isort mypy types-requests
+poetry add pip python-dotenv requests pandas openpyxl 
+poetry add --group lint flake8 black isort mypy types-requests pandas-stubs
 poetry add --group dev pytest pytest-cov
 ```
 
@@ -280,6 +280,17 @@ for transaction in transactions:
 
 # print(transaction_toral_amount_in_rub(transactions))
 # >>> round(float(sum_amount_in_rub, 2))
+```
+
+Модуль src.transaction_reader.py
+```
+file_path = "/data/file.csv"
+read_csv_transactions(file_path)
+>>> [{}] # преобразует в список словарей по строкам
+
+file_path = "/data/file.xlsx"
+read_exel_transactions(file_path)
+>>> [{}] # преобразует в список словарей по строкам
 ```
 ## Тестирование:
 Этот проект использует pytest для тестирования. Чтобы запустить тесты, выполните следующие шаги:

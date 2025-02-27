@@ -42,6 +42,11 @@ def test_transaction_amount_in_rub_usd(mock_get: MagicMock) -> None:
     mock_get.return_value = 520543.42
     result = transaction_amount_in_rub(transaction)
     assert result == 520543.42
+    date = "2019-07-03"
+    code = "RUB"
+    code_currency = "USD"
+    amount = "8221.37"
+    mock_get.assert_called_once_with(date, code_to=code, code_from=code_currency, amount=amount)
 
 
 @patch("requests.request")
@@ -56,7 +61,6 @@ def test_get_apilayer_convert_rates(mock_request: MagicMock) -> None:
     mock_request.return_value.status_code = 200
 
     assert get_apilayer_convert_rates(code_to=code_to, code_from=code_from, amount=amount) == expected_result
-
     api_key = os.getenv("APILAYER_EDAPI_KEY")
     url = f"https://api.apilayer.com/exchangerates_data/convert?to={code_to}&from={code_from}&amount={amount}"
     mock_request.assert_called_once_with("GET", url, headers={"apikey": api_key}, data={})
@@ -76,6 +80,9 @@ def test_get_apilayer_convert_rates_api_error(mock_request: MagicMock) -> None:
         get_apilayer_convert_rates(code_to=code_to, code_from=code_from, amount=amount)
 
     assert "Что-то пошло не так. Ошибка API: 429 - You have" in str(exc_info)
+    api_key = os.getenv("APILAYER_EDAPI_KEY")
+    url = f"https://api.apilayer.com/exchangerates_data/convert?to={code_to}&from={code_from}&amount={amount}"
+    mock_request.assert_called_once_with("GET", url, headers={"apikey": api_key}, data={})
 
 
 @patch("requests.request")
@@ -92,6 +99,9 @@ def test_get_apilayer_convert_rates_connection_error(mock_request: MagicMock) ->
         get_apilayer_convert_rates(code_to=code_to, code_from=code_from, amount=amount)
 
     assert "Connection Error. Please check your network connection" in str(exc_info)
+    api_key = os.getenv("APILAYER_EDAPI_KEY")
+    url = f"https://api.apilayer.com/exchangerates_data/convert?to={code_to}&from={code_from}&amount={amount}"
+    mock_request.assert_called_once_with("GET", url, headers={"apikey": api_key}, data={})
 
 
 @patch("requests.request")
@@ -107,7 +117,6 @@ def test_get_apilayer_convert_rates_introduction_date(mock_request: MagicMock) -
     mock_request.return_value.status_code = 200
 
     assert get_apilayer_convert_rates(date, code_to=code_to, code_from=code_from, amount=amount) == expected_result
-
     api_key = os.getenv("APILAYER_EDAPI_KEY")
     url = (
         f"https://api.apilayer.com/exchangerates_data/convert?to={code_to}&from={code_from}&amount={amount}"

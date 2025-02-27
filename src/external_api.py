@@ -5,45 +5,6 @@ from typing import Any, Dict, Optional
 import requests
 from dotenv import load_dotenv
 
-# def transaction_total_amount_in_rub(transactions: List[Dict[str, Any]]) -> float:
-#     """Функция, принимает транзакции, выводит сумму транзакций в рублях. С конвертацией на сегодняшний день"""
-#     code = "RUB"
-#     transactions_amount = []
-#     transactions_currency_amount = {}
-#
-#     for transaction in transactions:
-#         # {
-#         #     "id": 441945886,
-#         #     "state": "EXECUTED",
-#         #     "date": "2019-08-26T10:50:58.294041",
-#         #     "operationAmount": {
-#         #         "amount": "31957.58",
-#         #         "currency": {
-#         #             "name": "руб.",
-#         #             "code": "RUB"
-#         #         }
-#         #     },
-#         #     "description": "Перевод организации",
-#         #     "from": "Maestro 1596837868705199",
-#         #     "to": "Счет 64686473678894779589"
-#         # }
-#         code_currency = transaction["operationAmount"]["currency"]["code"]
-#         amount = float(transaction["operationAmount"]["amount"])
-#
-#         if code_currency not in transactions_currency_amount:
-#             transactions_currency_amount[code_currency] = amount
-#         else:
-#             transactions_currency_amount[code_currency] += amount
-#
-#     for key, values in transactions_currency_amount.items():
-#         if key == code:
-#             transactions_amount.append(round(values, 2))
-#         else:
-#             convert_rates = get_apilayer_convert_rates(code_to=code, code_from=key, amount=str(round(values, 2)))
-#             transactions_amount.append(convert_rates)
-#
-#     return sum(transactions_amount)
-
 
 def get_apilayer_convert_rates(date: Optional[str] = None, *, code_to: str, code_from: str, amount: str) -> float:
     """Функция конвертации валюты, Exchange Rates Data API: https://apilayer.com/marketplace/exchangerates_data-api"""
