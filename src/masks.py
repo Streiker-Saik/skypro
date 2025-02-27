@@ -1,8 +1,13 @@
 import logging
+import os
 from typing import Union
 
+# создание абсолютного пути из относительного
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+log_file = os.path.join(project_root, 'logs', 'masks.log')
+
 masks_logger = logging.getLogger("masks")
-file_handler = logging.FileHandler("logs/masks.log", mode="w", encoding="utf-8")
+file_handler = logging.FileHandler(log_file, mode="w", encoding="utf-8")
 file_formater = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s: %(message)s")
 file_handler.setFormatter(file_formater)
 masks_logger.addHandler(file_handler)
